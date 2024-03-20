@@ -1,5 +1,5 @@
 import { serve } from "@hono/node-server";
-import { serveStatic } from "@hono/node-server/serve-static";
+// import { serveStatic } from "@hono/node-server/serve-static";
 import { Button, Frog, TextInput } from "frog";
 // import { neynar } from 'frog/hubs'
 // import { devtools } from "frog/dev";
@@ -62,9 +62,9 @@ app.frame("/", (c) => {
 });
 
 const port = 3000;
-console.log(`Server is running on port ${port}`);
 
 serve({
   fetch: app.fetch,
   port,
 });
+console.log(`Server is running on port ${port}`);
