@@ -3,4 +3,6 @@ npm install
 npm run dev
 ```
 
-Head to http://localhost:5173
+## Deploy
+
+beta version is build from main branch
