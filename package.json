@@ -12,6 +12,7 @@
     "dotenv": "^16.4.5",
     "frog": "latest",
     "hono": "^4",
+    "hono-og": "^0.0.26",
     "viem": "^2.8.18"
   },
   "devDependencies": {

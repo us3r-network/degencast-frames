@@ -30,15 +30,7 @@ export const selectedToken = async (c: CustomFrameContext) => {
 
   return c.res({
     action: "/finish",
-    image: (
-      <div style={backgroundStyles}>
-        <span style={titleStyles}>Buy ${symbol}</span>
-
-        <span style={warningStyles}>
-          This is experimental. Swap at your own risk.
-        </span>
-      </div>
-    ),
+    image: `/swapsv2/images/selected-token/${symbol}`,
     intents: [
       <TextInput placeholder="ETH amount (default 0.01)" />,
       <Button.Transaction target={`/tx?network=${network}&token=${token}`}>

@@ -29,15 +29,7 @@ export const tradeScreen = async (c: CustomFrameContext) => {
 
   return c.res({
     action: "/finish",
-    image: (
-      <div style={backgroundStyles}>
-        <span style={titleStyles}>Buy ${symbol}</span>
-
-        <span style={warningStyles}>
-          This is experimental. Swap at your own risk. There is a 1% fee
-        </span>
-      </div>
-    ),
+    image: `/swapsv2/images/trade/${symbol}`,
     intents: [
       <TextInput placeholder="ETH amount (default 0.01)" />,
       <Button.Transaction target={`/tx?network=${network}&token=${token}`}>
