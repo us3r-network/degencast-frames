@@ -41,6 +41,7 @@ images.hono.get("/start", async (ctx) => {
   );
 
   return new ImageResponse(startImage, {
+    format: "png",
     headers: {
       "Cache-Control": "public, max-age=3600",
     },
@@ -110,6 +111,7 @@ images.hono.get("/token-selection", async (ctx) => {
   );
 
   return new ImageResponse(img, {
+    format: "png",
     headers: {
       "Cache-Control": "public, max-age=3600",
     },
@@ -128,6 +130,7 @@ images.hono.get("/selected-token/:symbol", async (ctx) => {
     </div>
   );
   return new ImageResponse(image, {
+    format: "png",
     headers: {
       "Cache-Control": "public, max-age=3600",
     },
@@ -146,6 +149,7 @@ images.hono.get("/finish", async (ctx) => {
     </div>
   );
   return new ImageResponse(image, {
+    format: "png",
     headers: {
       "Cache-Control": "public, max-age=3600",
     },
