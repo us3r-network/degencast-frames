@@ -3,6 +3,7 @@ import { Button, Frog, FrogConstructorParameters, TextInput } from "frog";
 // import { serveStatic } from "@hono/node-server/serve-static";
 
 import dclandingApp from "./dclanding";
+import swapsv2App from "./swapsv2";
 import { ORIGIN } from "./lib/env";
 
 const appConfig: FrogConstructorParameters = {
@@ -22,6 +23,7 @@ export const app = new Frog(appConfig);
 // app.use("/*", serveStatic({ root: "/public" }));
 
 app.route("/dclanding", dclandingApp);
+app.route("/swapsv2", swapsv2App);
 
 app.hono.get("/hello", async (ctx) => {
   return ctx.text("Hello, world!" + ORIGIN);
