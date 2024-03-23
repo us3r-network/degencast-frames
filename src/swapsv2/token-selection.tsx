@@ -62,7 +62,7 @@ export const assets = [
 export const tokenSelectionScreen = (c: CustomFrameContext) => {
   return c.res({
     action: "/",
-    image: "/swapsv2/images/token-selection",
+    image: "/swapsv2/images/token-selection/v2",
     intents: [
       <TextInput placeholder="Pick the token number" />,
       <Button action={`/selected-token`}>Select</Button>,

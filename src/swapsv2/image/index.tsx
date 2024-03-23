@@ -48,7 +48,7 @@ images.hono.get("/start", async (ctx) => {
   });
 });
 
-images.hono.get("/token-selection", async (ctx) => {
+images.hono.get("/token-selection/v2", async (ctx) => {
   const img = (
     <div style={backgroundStyles}>
       <div
