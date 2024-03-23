@@ -4,9 +4,10 @@ import { start } from "./start";
 import { getFont } from "../lib/fonts";
 import { transaction } from "./transaction";
 import { finishScreen } from "./finish";
-import { tradeScreen } from "./trade";
 import { tokenSelectionScreen } from "./token-selection";
 import { selectedToken } from "./selected-token";
+
+import images from "./image";
 
 type FrogOptions = {
   Bindings: {
@@ -29,11 +30,12 @@ export const app = new Frog<FrogOptions>({
   },
 });
 
+app.route("/images", images);
+
 app.frame("/", start);
 app.frame("/token-selection", tokenSelectionScreen);
 app.frame("/selected-token", selectedToken);
 app.frame("/finish", finishScreen);
-app.frame("/:network/:token", tradeScreen);
 app.transaction("/tx", transaction);
 
 export default app;

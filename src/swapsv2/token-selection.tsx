@@ -62,66 +62,7 @@ export const assets = [
 export const tokenSelectionScreen = (c: CustomFrameContext) => {
   return c.res({
     action: "/",
-    image: (
-      <div style={backgroundStyles}>
-        <div
-          style={{
-            display: "flex",
-            gap: 36,
-            flexDirection: "row",
-            flexWrap: "wrap",
-          }}
-        >
-          {assets.map((asset, i) => (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "2px solid rgba(15, 36, 56, 0.1)",
-                backgroundColor: "#FFFFFF",
-                borderRadius: 32,
-                gap: 16,
-                padding: "32px 48px",
-                width: "241px",
-                position: "relative",
-              }}
-            >
-              <span
-                style={{
-                  left: 0,
-                  top: 0,
-                  position: "absolute",
-                }}
-              >
-                {`${i}`}
-              </span>
-              <img
-                src={asset.image}
-                width={54}
-                height={54}
-                style={{ borderRadius: 9999 }}
-              />
-              <span style={{ color: "#5E6773", fontSize: "26px" }}>
-                {asset.name}
-              </span>
-            </div>
-          ))}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            position: "absolute",
-            bottom: "20px",
-            left: "20px",
-            fontSize: "30px",
-          }}
-        >
-          0 will be default if the number not exist
-        </div>
-      </div>
-    ),
+    image: "/swapsv2/images/token-selection",
     intents: [
       <TextInput placeholder="Pick the token number" />,
       <Button action={`/selected-token`}>Select</Button>,
