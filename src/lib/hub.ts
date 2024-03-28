@@ -98,28 +98,79 @@ export async function getFollowedFromFidToTargetFid(
   return data.data?.linkBody?.type === "follow";
 }
 
-export async function getUserDataByFid(fid: number, type: number) {
-  const res = await fetch(
-    `${BASE_URL}/v1/userDataByFid?fid=${fid}&user_data_type=${type}`
-  );
+export async function getUserDataByFid(fid: number) {
+  const res = await fetch(`${BASE_URL}/v1/userDataByFid?fid=${fid}`);
 
   const data = (await res.json()) as {
-    data: {
-      type: string;
-      fid: number;
-      timestamp: number;
-      network: string;
-      userDataBody: {
+    messages: Array<{
+      data: {
         type: string;
-        value: string;
+        fid: number;
+        timestamp: number;
+        network: string;
+        userDataBody: {
+          type: string;
+          value: string;
+        };
       };
-    };
-    hash: string;
-    hashScheme: string;
-    signature: string;
-    signatureScheme: string;
-    signer: string;
+      hash: string;
+      hashScheme: string;
+      signature: string;
+      signatureScheme: string;
+      signer: string;
+    }>;
   };
 
-  return data.data.userDataBody.value;
+  const userObj = {
+    username: "",
+    pfp: "",
+    bio: "",
+    display: "",
+  };
+  data.messages.forEach((message) => {
+    if (message.data.userDataBody.type === "USER_DATA_TYPE_USERNAME") {
+      userObj.username = message.data.userDataBody.value;
+    }
+    if (message.data.userDataBody.type === "USER_DATA_TYPE_PFP") {
+      userObj.pfp = message.data.userDataBody.value;
+    }
+    if (message.data.userDataBody.type === "USER_DATA_TYPE_BIO") {
+      userObj.bio = message.data.userDataBody.value;
+    }
+    if (message.data.userDataBody.type === "USER_DATA_TYPE_DISPLAY") {
+      userObj.display = message.data.userDataBody.value;
+    }
+  });
+
+  return userObj;
+}
+
+export async function getUserStorageByFid(fid: number) {
+  const res = await fetch(`${BASE_URL}/v1/storageLimitsByFid?fid=${fid}`);
+
+  const data = (await res.json()) as {
+    limits: Array<{
+      storeType: string;
+      name: string;
+      limit: number;
+      used: number;
+      earliestTimestamp: number;
+      earliestHash: string;
+    }>;
+    units: number;
+  };
+
+  const storageObj = {
+    units: data.units,
+    casts: data.limits.find((limit) => limit.storeType === "STORE_TYPE_CASTS"),
+    links: data.limits.find((limit) => limit.storeType === "STORE_TYPE_LINKS"),
+    reactions: data.limits.find(
+      (limit) => limit.storeType === "STORE_TYPE_REACTIONS"
+    ),
+    userData: data.limits.find(
+      (limit) => limit.storeType === "STORE_TYPE_USER_DATA"
+    ),
+  };
+
+  return storageObj;
 }
