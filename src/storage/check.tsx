@@ -12,7 +12,7 @@ export async function check(c: any) {
 
   // console.log("user", user, storage);
   return c.res({
-    action: "/finish",
+    action: "/check",
     image: `/storage/images/check/${fid}`,
     intents: [
       <TextInput placeholder="amount of unit, default 1" />,
