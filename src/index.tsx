@@ -4,6 +4,7 @@ import { Button, Frog, FrogConstructorParameters, TextInput } from "frog";
 
 import dclandingApp from "./dclanding";
 import swapsv2App from "./swapsv2";
+import storageApp from "./storage";
 import { ORIGIN } from "./lib/env";
 
 const appConfig: FrogConstructorParameters = {
@@ -24,6 +25,7 @@ export const app = new Frog(appConfig);
 
 app.route("/dclanding", dclandingApp);
 app.route("/swapsv2", swapsv2App);
+app.route("/storage", storageApp);
 
 app.hono.get("/hello", async (ctx) => {
   return ctx.text("Hello, world!" + ORIGIN);
