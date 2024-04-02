@@ -23,8 +23,8 @@ images.hono.get("/start.jpg", async (ctx) => {
   return ctx.body(startJPG);
 });
 
-images.hono.get("/check/:fid", async (ctx) => {
-  const fid = ctx.req.param("fid") || "0";
+images.hono.get("/check/:fid/image.png", async (ctx) => {
+  const fid = ctx.req.param("fid");
   if (fid === "0") {
     const errorImg = (
       <div
