@@ -10,6 +10,7 @@ import {
 import { backgroundStyles, titleStyles, warningStyles } from "../styles";
 import { fetchSoldDegen } from "../../lib/events";
 import {} from "viem";
+import { fetchDegenPrice } from "../../lib/dexscreener";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -62,6 +63,8 @@ images.hono.get("/check/:fid/image.png", async (ctx) => {
     getUserDataByFid(Number(fid)),
     fetchSoldDegen({ address: ethAddress }),
   ]);
+  const degenPriceData = await fetchDegenPrice();
+  const degenPrice = degenPriceData.pair.priceUsd;
 
   const transfers = degenSold.result.transfers;
   //   console.log(transfers);
@@ -128,7 +131,7 @@ images.hono.get("/check/:fid/image.png", async (ctx) => {
             gap: 10,
           }}
         >
-          Degen {amount.toLocaleString()} sold
+          {amount.toLocaleString()} sold. now degen price {degenPrice}
         </div>
       </div>
     </div>
