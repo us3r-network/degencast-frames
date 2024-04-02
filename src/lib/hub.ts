@@ -65,8 +65,8 @@ export async function getAddressFromFid(fid: number) {
   );
 
   return {
-    ethAddress: ethAddresses[0].data.verificationAddAddressBody.address,
-    solAddress: solAddresses[0].data.verificationAddAddressBody.address,
+    ethAddress: ethAddresses[0]?.data.verificationAddAddressBody.address || "",
+    solAddress: solAddresses[0]?.data.verificationAddAddressBody.address || "",
   };
 }
 
