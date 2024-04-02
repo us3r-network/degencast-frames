@@ -11,7 +11,7 @@ export function start(c: FrameContext) {
       <Button action={`/check`}>Check</Button>,
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-          "I have sold 3 haidilao"
+          "check your haidilao"
         )}&embeds[]=${HAI_DI_LAO_FRAME}`}
       >
         Share
