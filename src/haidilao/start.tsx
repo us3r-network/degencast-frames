@@ -12,7 +12,7 @@ export function start(c: FrameContext) {
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           "I have sold 3 haidilao"
-        )}&embeds[]=${encodeURIComponent(HAI_DI_LAO_FRAME)}`}
+        )}&embeds[]=${HAI_DI_LAO_FRAME}`}
       >
         Share
       </Button.Link>,

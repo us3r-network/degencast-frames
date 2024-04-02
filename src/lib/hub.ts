@@ -54,12 +54,12 @@ export async function getAddressFromFid(fid: number) {
     }>;
   };
 
-  const ethAddresses = data.messages.filter(
+  const ethAddresses = data.messages?.filter(
     (message) =>
       message.data.verificationAddAddressBody.protocol === "PROTOCOL_ETHEREUM"
   );
 
-  const solAddresses = data.messages.filter(
+  const solAddresses = data.messages?.filter(
     (message) =>
       message.data.verificationAddAddressBody.protocol === "PROTOCOL_SOLANA"
   );
