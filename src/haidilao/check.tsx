@@ -20,7 +20,6 @@ export async function check(c: FrameContext) {
     fetchSoldDegen({ address: ethAddress }),
   ]);
   const degenPriceData = await fetchDegenPrice();
-  const degenPrice = degenPriceData.pair.priceUsd;
 
   const transfers = degenSold.result.transfers;
   //   console.log(transfers);
@@ -36,7 +35,11 @@ export async function check(c: FrameContext) {
       <Button action={`/`}>Back</Button>,
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-          `I have sold ${amount} degen`
+          `Damn, I would never eat haidilao hot pot again !!!` +
+            `
+
+` +
+            `join /haidilao and keep updates`
         )}&embeds[]=${
           HAI_DI_LAO_FRAME + `/images/check/${fid}/image.png`
         }&embeds[]=${HAI_DI_LAO_FRAME}`}

@@ -7,15 +7,6 @@ export function start(c: FrameContext) {
   return c.res({
     action: "/",
     image: "/haidilao/images/start.jpg",
-    intents: [
-      <Button action={`/check`}>Check</Button>,
-      <Button.Link
-        href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-          "check your haidilao"
-        )}&embeds[]=${HAI_DI_LAO_FRAME}`}
-      >
-        Share
-      </Button.Link>,
-    ],
+    intents: [<Button action={`/check`}>Check Me</Button>],
   });
 }
