@@ -30,7 +30,7 @@ export async function check(c: FrameContext) {
   }
   return c.res({
     action: "/",
-    image: `/haidilao/images/check/${fid}/image.png`,
+    image: `/haidilao/images/check/${fid}/imagev2.png`,
     intents: [
       <Button action={`/`}>Back</Button>,
       <Button.Link
@@ -41,7 +41,7 @@ export async function check(c: FrameContext) {
 ` +
             `join /haidilao and keep updates`
         )}&embeds[]=${
-          HAI_DI_LAO_FRAME + `/images/check/${fid}/image.png`
+          HAI_DI_LAO_FRAME + `/images/check/${fid}/imagev2.png`
         }&embeds[]=${HAI_DI_LAO_FRAME}`}
       >
         Share
