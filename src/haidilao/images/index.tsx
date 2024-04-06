@@ -352,9 +352,9 @@ images.hono.get("/check/:fid/imagev2.png", async (ctx) => {
             // border: "2px solid rgba(15, 36, 56, 0.1)",
           }}
         >
-          I sold {amount.toLocaleString().split(".")[0]} $degen for $
-          {total.toLocaleString().split(".")[0]}, if i held them today i can
-          have...
+          I paper handed {amount.toLocaleString().split(".")[0]} $degen now
+          worth ${total.toLocaleString().split(".")[0]}, if i held them today i
+          can have...
         </div>
       </div>
 
