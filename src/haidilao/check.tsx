@@ -8,7 +8,7 @@ import {
   getUserStorageByFid,
 } from "../lib/hub";
 
-import { fetchSoldDegen } from "../lib/events";
+import { fetchSoldDegen, fetchSoldDegenToAero } from "../lib/events";
 import { fetchDegenPrice } from "../lib/dexscreener";
 
 export async function check(c: FrameContext) {
@@ -16,8 +16,9 @@ export async function check(c: FrameContext) {
   const { ethAddress } = (await getAddressFromFid(Number(fid))) as {
     ethAddress: `0x${string}`;
   };
-  const [degenSold] = await Promise.all([
+  const [degenSold, degenSoldToAero] = await Promise.all([
     fetchSoldDegen({ address: ethAddress }),
+    fetchSoldDegenToAero({ address: ethAddress }),
   ]);
   const degenPriceData = await fetchDegenPrice();
   const resp = await fetch(
@@ -25,11 +26,12 @@ export async function check(c: FrameContext) {
   );
 
   const transfers = degenSold.result.transfers;
+  const transfersToAero = degenSoldToAero.result.transfers;
   //   console.log(transfers);
-
+  const txs = [...transfers, ...transfersToAero];
   let amount = 0;
-  for (let i = 0; i < transfers.length; i++) {
-    amount += transfers[i].value;
+  for (let i = 0; i < txs.length; i++) {
+    amount += txs[i].value;
   }
   return c.res({
     action: "/",
