@@ -8,7 +8,7 @@ import {
   getUserStorageByFid,
 } from "../../lib/hub";
 import { backgroundStyles, titleStyles, warningStyles } from "../styles";
-import { fetchSoldDegen } from "../../lib/events";
+import { fetchSoldDegen, fetchSoldDegenToAero } from "../../lib/events";
 import { fetchDegenPrice } from "../../lib/dexscreener";
 import { HAI_DI_LAO_FRAME } from "../../lib/env";
 
@@ -76,19 +76,21 @@ images.hono.get("/check/:fid/image.png", async (ctx) => {
       },
     });
   }
-  const [user, degenSold] = await Promise.all([
+  const [user, degenSold, degenSoldToAero] = await Promise.all([
     getUserDataByFid(Number(fid)),
     fetchSoldDegen({ address: ethAddress }),
+    fetchSoldDegenToAero({ address: ethAddress }),
   ]);
   const degenPriceData = await fetchDegenPrice();
   const degenPrice = degenPriceData.pair.priceUsd;
 
   const transfers = degenSold.result.transfers;
+  const transfersToAero = degenSoldToAero.result.transfers;
   //   console.log(transfers);
-
+  const txs = [...transfers, ...transfersToAero];
   let amount = 0;
-  for (let i = 0; i < transfers.length; i++) {
-    amount += transfers[i].value;
+  for (let i = 0; i < txs.length; i++) {
+    amount += txs[i].value;
   }
   const total = amount * Number(degenPrice || 0);
   //   console.log({ amount });
