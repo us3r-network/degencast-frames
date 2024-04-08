@@ -20,6 +20,9 @@ export async function check(c: FrameContext) {
     fetchSoldDegen({ address: ethAddress }),
   ]);
   const degenPriceData = await fetchDegenPrice();
+  const resp = await fetch(
+    `https://api-dev.u3.xyz/onboarding/haidilao?topNum=0&fid=${fid}`
+  );
 
   const transfers = degenSold.result.transfers;
   //   console.log(transfers);
@@ -32,7 +35,6 @@ export async function check(c: FrameContext) {
     action: "/",
     image: `/haidilao/images/check/${fid}/imagev2.png`,
     intents: [
-      <Button action={`/`}>Back</Button>,
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           `Damn, I would never eat haidilao hot pot again !!!` +
@@ -44,7 +46,10 @@ export async function check(c: FrameContext) {
           HAI_DI_LAO_FRAME + `/images/check/${fid}/imagev2.png`
         }&embeds[]=${HAI_DI_LAO_FRAME}`}
       >
-        Share
+        Cast for Haidilao
+      </Button.Link>,
+      <Button.Link href="https://haidilao.degencast.xyz">
+        Check my rank
       </Button.Link>,
     ],
   });

@@ -7,7 +7,7 @@ import { check } from "./check";
 import images from "./images";
 
 export const app = new Frog({
-  //   browserLocation: "https://degencast.xyz/landing",
+  browserLocation: "https://haidilao.degencast.xyz",
   headers: {
     "Cache-Control": "public, max-age=3600",
   },
