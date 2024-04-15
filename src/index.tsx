@@ -1,11 +1,13 @@
 import { serve } from "@hono/node-server";
 import { Button, Frog, FrogConstructorParameters, TextInput } from "frog";
-// import { serveStatic } from "@hono/node-server/serve-static";
+import { serveStatic } from "frog/serve-static";
+import { devtools } from "frog/dev";
 
 import dclandingApp from "./dclanding";
 import swapsv2App from "./swapsv2";
 import storageApp from "./storage";
 import haidilao from "./haidilao";
+import allowance from "./allowance";
 
 import { ORIGIN } from "./lib/env";
 
@@ -23,16 +25,19 @@ if (ORIGIN) {
 
 export const app = new Frog(appConfig);
 
-// app.use("/*", serveStatic({ root: "/public" }));
+app.use("/*", serveStatic({ root: "/public" }));
 
 app.route("/dclanding", dclandingApp);
 app.route("/swapsv2", swapsv2App);
 app.route("/storage", storageApp);
 app.route("/haidilao", haidilao);
+app.route("/allowance", allowance);
 
 app.hono.get("/hello", async (ctx) => {
   return ctx.text("Hello, world!" + ORIGIN);
 });
+
+devtools(app as any, { serveStatic });
 
 const port = 3000;
 serve({
