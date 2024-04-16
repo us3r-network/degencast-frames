@@ -3,6 +3,11 @@ import { FrameContext, Frog, TransactionContext } from "frog";
 import images from "./images";
 import { start } from "./start";
 import { buy } from "./buy";
+import { checkAllowance } from "./allowance";
+import { startWithFid } from "./startfid";
+import { transactionBuy } from "./transaction-buy";
+import { transactionSell } from "./transaction-sell";
+import { finishScreen } from "./finish";
 
 export const app = new Frog({
   // browserLocation: "https://haidilao.degencast.xyz",
@@ -12,8 +17,14 @@ export const app = new Frog({
   //   hub: pinata(),
 });
 
-app.frame("/", start);
-app.frame("/buy", buy);
+app.frame("/:channel", start);
+app.frame("/:channel/fid/:fid", startWithFid);
+app.frame("/:channel/buy/share", buy);
+app.frame("/:channel/check/allowance", checkAllowance);
+
+app.frame("/:channel/finish", finishScreen);
+app.transaction("/:channel/tx/buy", transactionBuy);
+app.transaction("/:channel/tx/sell", transactionSell);
 
 app.route("/images", images);
 

@@ -7,20 +7,32 @@ import {
   getUserDataByFid,
   getUserStorageByFid,
 } from "../lib/hub";
+import { BlankInput } from "hono/types";
 
-export async function buy(c: FrameContext) {
+export async function buy(
+  c: FrameContext<Env, "/:channel/buy/share", BlankInput>
+) {
   const fid = c.frameData?.fid!;
+  const channel = c.req.param("channel");
   const { ethAddress } = (await getAddressFromFid(Number(fid))) as {
     ethAddress: `0x${string}`;
   };
 
   return c.res({
-    action: "/",
-    image: `/allowance/images/share/${fid}/image.png`,
+    action: `/${channel}/finish`,
+    image: `/allowance/images/${channel}/share/${fid}/image.png`,
     intents: [
-      <Button.Link href="https://haidilao.degencast.xyz">
-        Check my rank
-      </Button.Link>,
+      <TextInput placeholder="Quantity of shares..." />,
+      <Button.Transaction target={`/${channel}/tx/buy`}>
+        Buy
+      </Button.Transaction>,
+      <Button.Transaction target={`/${channel}/tx/sell`}>
+        Sell
+      </Button.Transaction>,
+      <Button action={`/${channel}/check/allowance`}>
+        Check my allowance
+      </Button>,
+      <Button.Link href="https://degencast.xyz">More shares</Button.Link>,
     ],
   });
 }
