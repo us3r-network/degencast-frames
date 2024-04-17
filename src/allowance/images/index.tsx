@@ -278,7 +278,7 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
             textAlign: "center",
           }}
         >
-          HIGHER
+          {channel.toUpperCase()}
         </div>
 
         <div
