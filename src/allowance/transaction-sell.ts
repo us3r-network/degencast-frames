@@ -1,49 +1,26 @@
 /** @jsxImportSource frog/jsx */
 
 import { Button, Env, TransactionContext, Frog, TextInput } from "frog";
-
-import { Address, parseEther } from "viem";
-
-// import { CustomTransactionContext } from ".";
-
-import {
-  FEE_RECIPIENT_WALLET_ADDRESS,
-  BUY_TOKEN_PERCENTAGE_FEE,
-  API_KEY_0X_API_KEY,
-} from "../lib/env";
 import { BlankInput } from "hono/types";
+import { shareContract } from "./lib/read-contract";
 
 export const transactionSell = async (
   c: TransactionContext<Env, "/:channel/tx/sell", BlankInput>
 ) => {
-  const token = c.req.query("token") as Address;
-  const network = c.req.query("network") as "base" | "optimism";
-  const value = c.inputText || "0.01";
-  const channel = c.req.param("channel");
+  const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
+  const fid = c.frameData?.fid || 0;
 
-  // prettier-ignore
-  const baseUrl = `https://${network}.api.0x.org/swap/v1/quote?`
-  const eth = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+  const units = BigInt("1");
 
-  // https://0x.org/docs/0x-swap-api/api-references/get-swap-v1-quote#request
-  const params = new URLSearchParams({
-    buyToken: token,
-    sellToken: eth,
-    sellAmount: parseEther(value).toString(),
-    feeRecipient: FEE_RECIPIENT_WALLET_ADDRESS!,
-    buyTokenPercentageFee: BUY_TOKEN_PERCENTAGE_FEE!,
-  }).toString();
+  const price = await shareContract.read.getSellPriceAfterFee([subject, units]);
 
-  const res = await fetch(baseUrl + params, {
-    headers: { "0x-api-key": API_KEY_0X_API_KEY! },
-  });
-
-  const order = (await res.json()) as any;
-
-  return c.send({
-    chainId: `eip155:${network === "base" ? "8453" : "10"}`,
-    to: order.to,
-    data: order.data,
-    value: BigInt(order.value),
+  console.log("rent", { fid, units, price });
+  return c.contract({
+    abi: shareContract.abi,
+    chainId: "eip155:84532",
+    functionName: "sellShares",
+    args: [subject, units],
+    to: shareContract.address,
+    value: price,
   });
 };

@@ -23,10 +23,10 @@ export async function buy(
     image: `/allowance/images/${channel}/share/${fid}/image.png`,
     intents: [
       <TextInput placeholder="Quantity of shares..." />,
-      <Button.Transaction target={`/${channel}/tx/buy`}>
+      <Button.Transaction target={`/${channel}/tx/buy?address=${ethAddress}`}>
         Buy
       </Button.Transaction>,
-      <Button.Transaction target={`/${channel}/tx/sell`}>
+      <Button.Transaction target={`/${channel}/tx/sell?address=${ethAddress}`}>
         Sell
       </Button.Transaction>,
       <Button action={`/${channel}/check/allowance`}>

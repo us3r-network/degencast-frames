@@ -117,6 +117,8 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
   const fid = ctx.req.param("fid");
   const channel = ctx.req.param("channel");
 
+  const user = await getUserDataByFid(Number(fid));
+  // console.log("share image", { fid, channel, user });
   const image = (
     <Box
       grow
@@ -145,7 +147,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
             padding: "8px",
           }}
         >
-          <Image src="https://wrpcd.net/cdn-cgi/image/fit=contain,f=auto,w=144/https%3A%2F%2Fi.imgur.com%2Fjaz8927.png" />
+          <Image src={`${user.pfp}`} />
         </div>
 
         <div
@@ -243,6 +245,11 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
 });
 
 images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
+  const fid = ctx.req.param("fid");
+  const channel = ctx.req.param("channel");
+
+  const user = await getUserDataByFid(Number(fid));
+
   const image = (
     <Box
       grow
@@ -347,7 +354,7 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
             padding: "8px",
           }}
         >
-          <Image src="https://wrpcd.net/cdn-cgi/image/fit=contain,f=auto,w=144/https%3A%2F%2Fi.imgur.com%2Fjaz8927.png" />
+          <Image src={`${user.pfp}`} />
         </div>
         <div
           style={{
