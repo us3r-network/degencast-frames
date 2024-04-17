@@ -20,7 +20,7 @@ export function startWithFid(
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           `Buy shares in degencast`
-        )}&embeds[]=${ALLOWANCE_FRAME} + /${channel}`}
+        )}&embeds[]=${ALLOWANCE_FRAME}/${channel}`}
       >
         Share
       </Button.Link>,

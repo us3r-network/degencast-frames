@@ -17,7 +17,7 @@ export const finishScreen = (
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           `Buy shares in degencast`
-        )}&embeds[]=${ALLOWANCE_FRAME} + /${channel}/fid/${fid}`}
+        )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}`}
       >
         Share
       </Button.Link>,
