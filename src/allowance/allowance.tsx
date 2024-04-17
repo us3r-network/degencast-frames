@@ -24,7 +24,7 @@ export async function checkAllowance(
     image: `/allowance/images/${channel}/allowance/${fid}/image.png`,
     intents: [
       <Button action={`/${channel}/check/allowance`}>Refresh</Button>,
-      <Button>Buy shares</Button>,
+      <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
       <Button.Link href="https://degencast.xyz">share</Button.Link>,
       // <Button.Link href="https://degencast.xyz">Leaderboard</Button.Link>,
     ],
