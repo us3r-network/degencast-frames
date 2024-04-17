@@ -119,11 +119,18 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
   const fid = ctx.req.param("fid");
   const channel = ctx.req.param("channel");
 
+  const { ethAddress } = (await getAddressFromFid(Number(fid))) as {
+    ethAddress: `0x${string}`;
+  };
   const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
 
   const user = await getUserDataByFid(Number(fid));
   const price = await shareContract.read.getBuyPrice([subject, BigInt("1")]);
-  // console.log("share image", { fid, channel, user });
+  const shareBalance = await shareContract.read.sharesBalance([
+    subject,
+    ethAddress,
+  ]);
+
   const priceString = formatEther(price);
 
   const image = (
@@ -228,7 +235,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
                 display: "flex",
               }}
             >
-              0.01
+              {shareBalance.toString()}
             </div>
           </div>
         </div>
