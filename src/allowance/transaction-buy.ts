@@ -2,15 +2,6 @@
 
 import { Button, Env, TransactionContext, Frog, TextInput } from "frog";
 
-import { Address, parseEther } from "viem";
-
-// import { CustomTransactionContext } from ".";
-
-import {
-  FEE_RECIPIENT_WALLET_ADDRESS,
-  BUY_TOKEN_PERCENTAGE_FEE,
-  API_KEY_0X_API_KEY,
-} from "../lib/env";
 import { BlankInput } from "hono/types";
 import { shareContract } from "./lib/read-contract";
 
@@ -21,7 +12,7 @@ export const transactionBuy = async (
 
   // const address = c.req.query("address") as Address;
   const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
-  const fid = c.frameData?.fid || 0;
+  const fid = c.frameData?.fid!;
 
   const units = BigInt(value);
 

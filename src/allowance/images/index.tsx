@@ -2,6 +2,7 @@ import { Frog } from "frog";
 import * as fs from "node:fs";
 import { URL } from "node:url";
 import { ImageResponse, type ImageResponseOptions } from "hono-og";
+import { formatEther } from "viem";
 import {
   getAddressFromFid,
   getUserDataByFid,
@@ -13,6 +14,7 @@ import { fetchDegenPrice } from "../../lib/dexscreener";
 import { ALLOWANCE_FRAME } from "../../lib/env";
 import { Box, Heading, VStack, Text, Image, HStack } from "../ui";
 import { it } from "node:test";
+import { shareContract } from "../lib/read-contract";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -117,8 +119,13 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
   const fid = ctx.req.param("fid");
   const channel = ctx.req.param("channel");
 
+  const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
+
   const user = await getUserDataByFid(Number(fid));
+  const price = await shareContract.read.getBuyPrice([subject, BigInt("1")]);
   // console.log("share image", { fid, channel, user });
+  const priceString = formatEther(price);
+
   const image = (
     <Box
       grow
@@ -166,7 +173,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
               fontSize: "16px",
             }}
           >
-            <span>{fid}</span>
+            <span>{user.display}</span>
             <div style={{ display: "flex", flexGrow: 1 }}></div>
             <span>{channel.toUpperCase()}</span>
           </div>
@@ -194,7 +201,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
                 display: "flex",
               }}
             >
-              0.01
+              {priceString}
             </div>
           </div>
 
@@ -304,7 +311,7 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
               display: "flex",
             }}
           >
-            $HIGHER
+            $DEGEN
           </div>
         </div>
 
