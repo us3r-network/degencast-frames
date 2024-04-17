@@ -4,14 +4,17 @@ import { Button, Env, TransactionContext, Frog, TextInput } from "frog";
 
 import { BlankInput } from "hono/types";
 import { shareContract } from "./lib/read-contract";
+import { getChannelInfo } from "./lib/api";
 
 export const transactionBuy = async (
   c: TransactionContext<Env, "/:channel/tx/buy", BlankInput>
 ) => {
   const value = c.inputText || "1";
+  const channel = c.req.param("channel");
 
-  // const address = c.req.query("address") as Address;
-  const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
+  const channelInfo = await getChannelInfo(channel);
+
+  const subject = channelInfo.data.shares[0].subjectAddress;
   const fid = c.frameData?.fid!;
 
   const units = BigInt(value);
