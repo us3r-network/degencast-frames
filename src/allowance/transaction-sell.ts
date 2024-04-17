@@ -8,9 +8,10 @@ export const transactionSell = async (
   c: TransactionContext<Env, "/:channel/tx/sell", BlankInput>
 ) => {
   const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
-  const fid = c.frameData?.fid || 0;
+  const value = c.inputText || "1";
+  const fid = c.frameData?.fid!;
 
-  const units = BigInt("1");
+  const units = BigInt(value);
 
   const price = await shareContract.read.getSellPriceAfterFee([subject, units]);
 
