@@ -8,6 +8,7 @@ import {
   getUserStorageByFid,
 } from "../lib/hub";
 import { BlankInput } from "hono/types";
+import { ALLOWANCE_FRAME } from "../lib/env";
 
 export async function checkAllowance(
   c: FrameContext<Env, "/:channel/check/allowance", BlankInput>
@@ -25,7 +26,13 @@ export async function checkAllowance(
     intents: [
       <Button action={`/${channel}/check/allowance`}>Refresh</Button>,
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
-      <Button.Link href="https://degencast.xyz">share</Button.Link>,
+      <Button.Link
+        href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
+          `Buy shares in degencast`
+        )}&embeds[]=${ALLOWANCE_FRAME} + /${channel}/fid/${fid}`}
+      >
+        Share
+      </Button.Link>,
       // <Button.Link href="https://degencast.xyz">Leaderboard</Button.Link>,
     ],
   });
