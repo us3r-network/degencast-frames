@@ -15,6 +15,7 @@ import { ALLOWANCE_FRAME } from "../../lib/env";
 import { Box, Heading, VStack, Text, Image, HStack } from "../ui";
 import { it } from "node:test";
 import { shareContract } from "../lib/read-contract";
+import { getChannelInfo } from "../lib/api";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -74,6 +75,8 @@ images.hono.get("/success.png", async (ctx) => {
 images.hono.get("/:channel/start.png", async (ctx) => {
   const channel = ctx.req.param("channel");
   console.log("start image", { channel });
+  const channelInfo = await getChannelInfo(channel);
+  const channelName = channelInfo.data.name;
 
   const image = (
     <Box
@@ -95,7 +98,7 @@ images.hono.get("/:channel/start.png", async (ctx) => {
           fontSize: "56px",
         }}
       >
-        {channel.toUpperCase()}
+        {channelName.toUpperCase()}
       </div>
     </Box>
   );
@@ -119,10 +122,11 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
   const fid = ctx.req.param("fid");
   const channel = ctx.req.param("channel");
 
+  const channelInfo = await getChannelInfo(channel);
   const { ethAddress } = (await getAddressFromFid(Number(fid))) as {
     ethAddress: `0x${string}`;
   };
-  const subject = "0x07e64ba35f77011e690f66de7e831829e9217a62";
+  const subject = channelInfo.data.shares[0].subjectAddress;
 
   const user = await getUserDataByFid(Number(fid));
   const price = await shareContract.read.getBuyPrice([subject, BigInt("1")]);
