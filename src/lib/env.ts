@@ -12,3 +12,5 @@ export const API_KEY_0X_API_KEY = process.env.API_KEY_0X_API_KEY;
 
 export const HAI_DI_LAO_FRAME = process.env.HAI_DI_LAO_FRAME || "";
 export const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+
+export const ALLOWANCE_FRAME = process.env.ALLOWANCE_FRAME || "";
