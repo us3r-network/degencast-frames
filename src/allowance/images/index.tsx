@@ -105,7 +105,7 @@ images.hono.get("/:channel/start.png", async (ctx) => {
   return new ImageResponse(image, {
     format: "png",
     headers: {
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=1",
     },
     width: 800,
     height: 480,
@@ -249,7 +249,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
   return new ImageResponse(image, {
     format: "png",
     headers: {
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=1",
     },
     width: 800,
     height: 480,
@@ -399,7 +399,7 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
   return new ImageResponse(image, {
     format: "png",
     headers: {
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=1",
     },
     width: 800,
     height: 480,
