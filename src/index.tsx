@@ -3,6 +3,7 @@ import { Button, Frog, FrogConstructorParameters, TextInput } from "frog";
 import { serveStatic } from "frog/serve-static";
 import { devtools } from "frog/dev";
 
+import start from "./start";
 import dclandingApp from "./dclanding";
 import swapsv2App from "./swapsv2";
 import storageApp from "./storage";
@@ -27,6 +28,7 @@ export const app = new Frog(appConfig);
 
 app.use("/*", serveStatic({ root: "/public" }));
 
+app.route("/start", start);
 app.route("/dclanding", dclandingApp);
 app.route("/swapsv2", swapsv2App);
 app.route("/storage", storageApp);

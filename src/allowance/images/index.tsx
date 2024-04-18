@@ -15,7 +15,7 @@ import { ALLOWANCE_FRAME } from "../../lib/env";
 import { Box, Heading, VStack, Text, Image, HStack } from "../ui";
 import { it } from "node:test";
 import { shareContract } from "../lib/read-contract";
-import { getChannelInfo } from "../lib/api";
+import { getAllowanceInfo, getChannelInfo } from "../lib/api";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -184,7 +184,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
               fontSize: "16px",
             }}
           >
-            <span>{user.display}</span>
+            <span>{user.username.toUpperCase()}</span>
             <div style={{ display: "flex", flexGrow: 1 }}></div>
             <span>{channel.toUpperCase()}</span>
           </div>
@@ -267,6 +267,8 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
   const channel = ctx.req.param("channel");
 
   const user = await getUserDataByFid(Number(fid));
+  const allowanceInfo = await getAllowanceInfo(channel, Number(fid));
+  // console.log({ allowanceInfo });
 
   const image = (
     <Box
@@ -322,7 +324,7 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
               display: "flex",
             }}
           >
-            $DEGEN
+            {allowanceInfo.data.tipsKeyword}
           </div>
         </div>
 
@@ -336,20 +338,35 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
         >
           <div
             style={{
-              color: "#A36EFE",
               display: "flex",
             }}
           >
-            HOLDING:
+            {user.username.toUpperCase()}
           </div>
           <div style={{ display: "flex", flexGrow: 1 }}></div>
           <div
             style={{
-              color: "white",
               display: "flex",
+              gap: "18px",
             }}
           >
-            0.01
+            <div
+              style={{
+                color: "#A36EFE",
+                display: "flex",
+              }}
+            >
+              RANK
+            </div>
+
+            <div
+              style={{
+                color: "white",
+                display: "flex",
+              }}
+            >
+              {allowanceInfo.data.rank}
+            </div>
           </div>
         </div>
       </div>
@@ -388,10 +405,10 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
             gap: "0px",
           }}
         >
-          <Item title="Allowance" value={1235} />
-          <Item title="Remaining" value={1235} />
-          <Item title="Tips Received" value={1235} />
-          <Item title="Shares" value={1235} />
+          <Item title="Allowance" value={allowanceInfo.data.allowance} />
+          <Item title="Remaining" value={allowanceInfo.data.remaining} />
+          <Item title="Tips Received" value={allowanceInfo.data.tipsReceived} />
+          <Item title="Shares" value={allowanceInfo.data.shares} />
         </div>
       </div>
     </Box>
@@ -441,7 +458,7 @@ function Item({ title, value }: { title: string; value: number }) {
           display: "flex",
         }}
       >
-        {(1235).toLocaleString()}
+        {value.toLocaleString()}
       </div>
     </div>
   );
