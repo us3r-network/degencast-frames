@@ -12,8 +12,8 @@ dependencies:
     specifier: ^16.4.5
     version: 16.4.5
   frog:
-    specifier: ^0.8.2
-    version: 0.8.2(@types/node@20.11.30)(hono@4.1.2)(typescript@5.4.2)
+    specifier: ^0.8.5
+    version: 0.8.5(@types/node@20.11.30)(hono@4.1.2)(typescript@5.4.2)
   hono:
     specifier: ^4
     version: 4.1.2
@@ -846,8 +846,8 @@ packages:
       to-regex-range: 5.0.1
     dev: false
 
-  /frog@0.8.2(@types/node@20.11.30)(hono@4.1.2)(typescript@5.4.2):
-    resolution: {integrity: sha512-AxiFttzMwO+bVBZuwtrwcFxZxg/WsTaSVwFCYcg9F6W0YewtAdHAGhPcXgUq6CMT/8depl6FsXm8K0zgPKpYpA==}
+  /frog@0.8.5(@types/node@20.11.30)(hono@4.1.2)(typescript@5.4.2):
+    resolution: {integrity: sha512-YP8rf+/gvqcnYzpZlkiMhstnTpyZWeDUi1T1a42gj5sT1kAGAYwh0mB5uQBrBqNQFLyj5Q+NDOXzXMANvY00XA==}
     hasBin: true
     peerDependencies:
       hono: ^4
