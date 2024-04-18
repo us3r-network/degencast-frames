@@ -15,6 +15,7 @@ app.frame("/", async (c) => {
   console.log({ invite });
 
   if (status === "redirect") {
+    console.log({ previousState });
     await new Promise((r) => setTimeout(r, 1000));
     invite = "redirected";
   }

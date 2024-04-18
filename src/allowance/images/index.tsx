@@ -74,7 +74,7 @@ images.hono.get("/success.png", async (ctx) => {
 
 images.hono.get("/:channel/start.png", async (ctx) => {
   const channel = ctx.req.param("channel");
-  console.log("start image", { channel });
+  // console.log("start image", { channel });
   const channelInfo = await getChannelInfo(channel);
   const channelName = channelInfo.data.name;
 
