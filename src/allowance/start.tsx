@@ -23,13 +23,13 @@ export async function start(c: FrameContext<Env, "/:channel", BlankInput>) {
     intents: [
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
-      <Button.Redirect
-        location={`https://warpcast.com/~/compose?text=${encodeURIComponent(
+      <Button.Link
+        href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           `Buy shares in degencast`
         )}&embeds[]=${ALLOWANCE_FRAME}/${channel}?invite=${fidInvite}`}
       >
         Share
-      </Button.Redirect>,
+      </Button.Link>,
       // <Button.Link href="https://degencast.xyz">Open App</Button.Link>,
     ],
   });
