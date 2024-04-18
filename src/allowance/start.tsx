@@ -7,7 +7,7 @@ import { ALLOWANCE_FRAME } from "../lib/env";
 export async function start(c: FrameContext<Env, "/:channel", BlankInput>) {
   const channel = c.req.param("channel");
   console.log("start", { channel });
-  const { buttonValue, status, buttonIndex } = c;
+  const { buttonValue, status, buttonIndex, initialPath } = c;
   let currInvite = c.req.query("invite");
   console.log({ currInvite });
   let fidInvite = "";
@@ -17,9 +17,8 @@ export async function start(c: FrameContext<Env, "/:channel", BlankInput>) {
     fidInvite = "5678";
   }
 
-  console.log({ fidInvite, currInvite });
+  console.log({ fidInvite, currInvite, initialPath });
   return c.res({
-    action: `/${channel}?invite=${currInvite}`,
     image: `/allowance/images/${channel}/start.png`,
     intents: [
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
