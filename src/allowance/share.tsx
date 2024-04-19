@@ -11,7 +11,7 @@ export const shareScreen = (
   const fid = c.frameData?.fid!;
   const inviteCode = Math.random().toString(36).substring(2, 8);
   return c.res({
-    image: `/allowance/images/success.png`,
+    image: `/allowance/images/share-more.png`,
     intents: [
       <Button action={`/${channel}/buy/share`}>Buy more</Button>,
       <Button.Link

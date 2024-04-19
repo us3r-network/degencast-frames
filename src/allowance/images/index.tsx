@@ -22,6 +22,7 @@ const __dirname = new URL(".", import.meta.url).pathname;
 const startPNG = fs.readFileSync(__dirname + "/cover.png");
 const bgPNG = fs.readFileSync(__dirname + "/bg.png");
 const shareBgPNG = fs.readFileSync(__dirname + "/share-bg.png");
+const shareMorePNG = fs.readFileSync(__dirname + "/share-more.png");
 const pixelBorderPNG = fs.readFileSync(__dirname + "/pixel-border.png");
 const pixelBorder2PNG = fs.readFileSync(__dirname + "/pixel-border-2.png");
 const dialogBorderPNG = fs.readFileSync(__dirname + "/dialog-border.png");
@@ -43,6 +44,12 @@ images.hono.get("/share-bg.png", async (ctx) => {
   ctx.header("Content-Type", "image/png");
   ctx.header("Cache-Control", "public, max-age=3600");
   return ctx.body(shareBgPNG);
+});
+
+images.hono.get("/share-more.png", async (ctx) => {
+  ctx.header("Content-Type", "image/png");
+  ctx.header("Cache-Control", "public, max-age=3600");
+  return ctx.body(shareMorePNG);
 });
 images.hono.get("/pixel-border.png", async (ctx) => {
   ctx.header("Content-Type", "image/png");
