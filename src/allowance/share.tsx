@@ -16,7 +16,7 @@ export const shareScreen = (
       <Button action={`/${channel}/buy/share`}>Back</Button>,
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-          `Buy shares in degencast`
+          `buy shares in /${channel}`
         )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}?invite=${inviteCode}`}
       >
         Share To Earn
