@@ -17,13 +17,14 @@ export function startWithFid(
     intents: [
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
-      <Button.Link
-        href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-          `Buy shares in degencast`
-        )}&embeds[]=${ALLOWANCE_FRAME}/${channel}`}
-      >
-        Share
-      </Button.Link>,
+      <Button action={`/${channel}/share`}>Share</Button>,
+      // <Button.Link
+      //   href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
+      //     `Buy shares in degencast`
+      //   )}&embeds[]=${ALLOWANCE_FRAME}/${channel}`}
+      // >
+      //   Share
+      // </Button.Link>,
       //   <Button.Link href="https://degencast.xyz">Open App</Button.Link>,
     ],
   });
