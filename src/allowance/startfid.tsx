@@ -17,7 +17,7 @@ export function startWithFid(
     intents: [
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
-      <Button action={`/${channel}/share`}>Share</Button>,
+      <Button action={`/${channel}/share`}>Share & Earn</Button>,
       // <Button.Link
       //   href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
       //     `Buy shares in degencast`

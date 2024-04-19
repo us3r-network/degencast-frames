@@ -13,7 +13,7 @@ export const shareScreen = (
   return c.res({
     image: `/allowance/images/share-more.png`,
     intents: [
-      <Button action={`/${channel}/buy/share`}>Buy more</Button>,
+      <Button action={`/${channel}/buy/share`}>Back</Button>,
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           `Buy shares in degencast`
