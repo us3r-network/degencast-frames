@@ -17,6 +17,7 @@ export async function buy(
   const { ethAddress } = (await getAddressFromFid(Number(fid))) as {
     ethAddress: `0x${string}`;
   };
+  const inviteCode = Math.random().toString(36).substring(2, 8);
 
   return c.res({
     action: `/${channel}/finish`,
@@ -30,7 +31,9 @@ export async function buy(
         Sell
       </Button.Transaction>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
-      <Button.Link href="https://dev.degencast.xyz/trade/shares">
+      <Button.Link
+        href={`https://dev.degencast.xyz/trade/shares?invite=${inviteCode}`}
+      >
         More shares
       </Button.Link>,
     ],
