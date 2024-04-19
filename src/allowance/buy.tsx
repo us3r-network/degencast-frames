@@ -34,7 +34,7 @@ export async function buy(
       <Button.Link
         href={`https://dev.degencast.xyz/trade/shares?invite=${inviteCode}`}
       >
-        More shares
+        Share & Earn
       </Button.Link>,
     ],
   });
