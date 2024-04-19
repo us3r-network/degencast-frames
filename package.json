@@ -13,7 +13,7 @@
     "frog": "^0.8.5",
     "hono": "^4",
     "hono-og": "^0.0.26",
-    "viem": "^2.8.18"
+    "viem": "^2.9.23"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
