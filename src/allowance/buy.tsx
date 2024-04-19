@@ -30,7 +30,9 @@ export async function buy(
         Sell
       </Button.Transaction>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
-      <Button.Link href="https://degencast.xyz">More shares</Button.Link>,
+      <Button.Link href="https://dev.degencast.xyz/trade/shares">
+        More shares
+      </Button.Link>,
     ],
   });
 }

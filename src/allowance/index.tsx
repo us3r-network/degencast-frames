@@ -8,9 +8,10 @@ import { startWithFid } from "./startfid";
 import { transactionBuy } from "./transaction-buy";
 import { transactionSell } from "./transaction-sell";
 import { finishScreen } from "./finish";
+import { shareScreen } from "./share";
 
 export const app = new Frog({
-  // browserLocation: "https://haidilao.degencast.xyz",
+  browserLocation: "https://dev.degencast.xyz",
   headers: {
     "Cache-Control": "public, max-age=3600",
   },
@@ -18,6 +19,7 @@ export const app = new Frog({
 });
 
 app.frame("/:channel", start);
+app.frame("/:channel/share", shareScreen);
 app.frame("/:channel/fid/:fid", startWithFid);
 app.frame("/:channel/buy/share", buy);
 app.frame("/:channel/check/allowance", checkAllowance);
