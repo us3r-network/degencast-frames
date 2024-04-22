@@ -10,9 +10,9 @@ export const app = new Frog({
 
 app.frame("/", async (c) => {
   const { buttonValue, status, buttonIndex, previousState } = c;
-  console.log({ buttonValue, status, buttonIndex, previousState });
+  // console.log({ buttonValue, status, buttonIndex, previousState });
   let invite = c.req.query("invite");
-  console.log({ invite });
+  // console.log({ invite });
 
   if (status === "redirect") {
     console.log({ previousState });

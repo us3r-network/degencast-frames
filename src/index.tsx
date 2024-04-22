@@ -9,6 +9,7 @@ import swapsv2App from "./swapsv2";
 import storageApp from "./storage";
 import haidilao from "./haidilao";
 import allowance from "./allowance";
+import tradetoken from "./tradetoken";
 
 import { ORIGIN } from "./lib/env";
 
@@ -34,6 +35,7 @@ app.route("/swapsv2", swapsv2App);
 app.route("/storage", storageApp);
 app.route("/haidilao", haidilao);
 app.route("/allowance", allowance);
+app.route("/tradetoken", tradetoken);
 
 app.hono.get("/hello", async (ctx) => {
   return ctx.text("Hello, world!" + ORIGIN);
