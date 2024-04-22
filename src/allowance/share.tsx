@@ -9,7 +9,7 @@ export const shareScreen = (
 ) => {
   const channel = c.req.param("channel");
   const fid = c.frameData?.fid!;
-  const inviteCode = Math.random().toString(36).substring(2, 8);
+  // const inviteCode = Math.random().toString(36).substring(2, 8);
   return c.res({
     image: `/allowance/images/share-more.png`,
     intents: [
@@ -17,7 +17,7 @@ export const shareScreen = (
       <Button.Link
         href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
           `buy shares in /${channel}`
-        )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}?invite=${inviteCode}`}
+        )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}?inviteFid=${fid}`}
       >
         Share To Earn
       </Button.Link>,
