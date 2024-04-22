@@ -9,7 +9,7 @@ export function startWithFid(
 ) {
   const channel = c.req.param("channel");
   const fid = c.req.param("fid");
-  console.log("start", { channel, fid });
+  // console.log("start", { channel, fid });
 
   return c.res({
     action: "/",

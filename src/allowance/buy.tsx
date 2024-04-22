@@ -8,6 +8,7 @@ import {
   getUserStorageByFid,
 } from "../lib/hub";
 import { BlankInput } from "hono/types";
+import { ALLOWANCE_MORE_SHARES_HOST } from "../lib/env";
 
 export async function buy(
   c: FrameContext<Env, "/:channel/buy/share", BlankInput>
@@ -17,7 +18,7 @@ export async function buy(
   const { ethAddress } = (await getAddressFromFid(Number(fid))) as {
     ethAddress: `0x${string}`;
   };
-  const inviteCode = Math.random().toString(36).substring(2, 8);
+  // const inviteCode = Math.random().toString(36).substring(2, 8);
 
   return c.res({
     action: `/${channel}/finish`,
@@ -32,7 +33,7 @@ export async function buy(
       </Button.Transaction>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
       <Button.Link
-        href={`https://dev.degencast.xyz/trade/shares?invite=${inviteCode}`}
+        href={`${ALLOWANCE_MORE_SHARES_HOST}/trade/shares?inviteFid=${fid}`}
       >
         More Shares
       </Button.Link>,
