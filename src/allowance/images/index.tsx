@@ -14,8 +14,8 @@ import { fetchDegenPrice } from "../../lib/dexscreener";
 import { ALLOWANCE_FRAME } from "../../lib/env";
 import { Box, Heading, VStack, Text, Image, HStack } from "../ui";
 import { it } from "node:test";
-import { shareContract } from "../lib/read-contract";
-import { getAllowanceInfo, getChannelInfo } from "../lib/api";
+import { getAllowanceInfo, getChannelInfo } from "../../lib/api";
+import { shareContract } from "../../lib/share-contract";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 
