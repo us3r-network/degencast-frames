@@ -1,4 +1,4 @@
-import { ALLOWANCE_FRAME_API } from "../../lib/env";
+import { ALLOWANCE_FRAME_API } from "./env";
 
 export async function getChannelInfo(channel: string): Promise<{
   msg: string;

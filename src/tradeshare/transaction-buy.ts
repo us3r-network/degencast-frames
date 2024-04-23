@@ -5,9 +5,12 @@ import { Button, Env, TransactionContext, Frog, TextInput } from "frog";
 import { BlankInput } from "hono/types";
 import { getChannelInfo } from "../lib/api";
 import { shareContract } from "../lib/share-contract";
+// import { shareContract } from "../../lib/read-contract";
+// import { degenShareContract } from "./lib/degen-share-contract";
+// import { getChannelInfo } from "./lib/api";
 
 export const transactionBuy = async (
-  c: TransactionContext<Env, "/:channel/tx/buy", BlankInput>
+  c: TransactionContext<Env, "/tx/buy/:channel", BlankInput>
 ) => {
   const value = c.inputText || "1";
   const channel = c.req.param("channel");

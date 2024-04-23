@@ -2,8 +2,8 @@
 
 import { Button, Env, TransactionContext, Frog, TextInput } from "frog";
 import { BlankInput } from "hono/types";
-import { shareContract } from "./lib/read-contract";
-import { getChannelInfo } from "./lib/api";
+import { getChannelInfo } from "../lib/api";
+import { shareContract } from "../lib/share-contract";
 
 export const transactionSell = async (
   c: TransactionContext<Env, "/:channel/tx/sell", BlankInput>

@@ -17,3 +17,5 @@ export const ALLOWANCE_FRAME = process.env.ALLOWANCE_FRAME || "";
 export const ALLOWANCE_FRAME_API = process.env.ALLOWANCE_FRAME_API || "";
 export const ALLOWANCE_MORE_SHARES_HOST =
   process.env.ALLOWANCE_MORE_SHARES_HOST || "";
+
+export const TRADE_TOKEN_FRAME = process.env.TRADE_TOKEN_FRAME || "";
