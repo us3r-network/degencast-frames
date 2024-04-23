@@ -18,8 +18,6 @@ export const transactionSell = async (
 
   const units = BigInt(value);
 
-  const price = await shareContract.read.getSellPriceAfterFee([subject, units]);
-
   // console.log("rent", { fid, units, price });
   return c.contract({
     abi: shareContract.abi,
@@ -27,6 +25,5 @@ export const transactionSell = async (
     functionName: "sellShares",
     args: [subject, units],
     to: shareContract.address,
-    value: price,
   });
 };
