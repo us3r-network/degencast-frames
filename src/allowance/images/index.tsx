@@ -172,7 +172,7 @@ images.hono.get("/:channel/share/:fid/image.png", async (ctx) => {
             padding: "8px",
           }}
         >
-          {/* <Image src={`${user.pfp}`} /> */}
+          <Image src={`${user.pfp}`} />
         </div>
 
         <div
@@ -396,7 +396,7 @@ images.hono.get("/:channel/allowance/:fid/image.png", async (ctx) => {
             padding: "8px",
           }}
         >
-          {/* <Image src={`${user.pfp}`} /> */}
+          <Image src={`${user.pfp}`} />
         </div>
         <div
           style={{
