@@ -10,7 +10,8 @@ export const finishScreen = (
   const channel = c.req.param("channel");
   const fid = c.frameData?.fid!;
   const tx = c.frameData?.transactionId;
-  console.log("tx", { fid, tx });
+  const castFid = c.frameData?.castId.fid;
+  console.log("tx", { fid, tx, castFid });
   return c.res({
     image: `/allowance/images/success.png`,
     intents: [
