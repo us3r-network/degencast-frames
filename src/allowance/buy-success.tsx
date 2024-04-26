@@ -2,7 +2,7 @@
 
 import { Button, Env, FrameContext, Frog, TextInput } from "frog";
 import { BlankInput } from "hono/types";
-import { ALLOWANCE_FRAME } from "../lib/env";
+import { ALLOWANCE_FRAME_API } from "../lib/env";
 
 export const buySuccess = (
   c: FrameContext<Env, "/:channel/buy/success", BlankInput>
@@ -13,7 +13,7 @@ export const buySuccess = (
   const castFid = c.frameData?.castId.fid;
   console.log("tx", { fid, tx, castFid });
 
-  fetch(`https://api-dev.u3.xyz/degencast-users/frame-actions`, {
+  fetch(`${ALLOWANCE_FRAME_API}/degencast-users/frame-actions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,14 +35,6 @@ export const buySuccess = (
       <Button action={`/${channel}/buy/share`}>Buy more</Button>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
       <Button action={`/${channel}/share`}>Share & Earn</Button>,
-      // <Button.Link
-      //   href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-      //     `Buy shares in degencast`
-      //   )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}`}
-      // >
-      //   Share
-      // </Button.Link>,
-      // <Button.Link href="https://degencast.xyz">Leaderboard</Button.Link>,
     ],
   });
 };

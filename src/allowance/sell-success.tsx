@@ -18,14 +18,6 @@ export const sellSuccess = (
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
       <Button action={`/${channel}/check/allowance`}>Allowance</Button>,
       <Button action={`/${channel}/share`}>Share & Earn</Button>,
-      // <Button.Link
-      //   href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-      //     `Buy shares in degencast`
-      //   )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}`}
-      // >
-      //   Share
-      // </Button.Link>,
-      // <Button.Link href="https://degencast.xyz">Leaderboard</Button.Link>,
     ],
   });
 };
