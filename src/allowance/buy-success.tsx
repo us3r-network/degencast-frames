@@ -12,6 +12,23 @@ export const buySuccess = (
   const tx = c.frameData?.transactionId;
   const castFid = c.frameData?.castId.fid;
   console.log("tx", { fid, tx, castFid });
+
+  fetch(`https://api-dev.u3.xyz/degencast-users/frame-actions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      buyerFid: fid,
+      sharerFid: castFid,
+      tx,
+    }),
+  })
+    .then(() => {
+      console.log("frame-actions success", { fid, tx, castFid });
+    })
+    .catch(console.error);
+
   return c.res({
     image: `/allowance/images/success.png`,
     intents: [
