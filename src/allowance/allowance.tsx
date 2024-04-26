@@ -26,13 +26,7 @@ export async function checkAllowance(
     intents: [
       <Button action={`/${channel}/check/allowance`}>Refresh</Button>,
       <Button action={`/${channel}/buy/share`}>Buy shares</Button>,
-      <Button.Link
-        href={`https://warpcast.com/~/compose?text=${encodeURIComponent(
-          `Buy shares in degencast`
-        )}&embeds[]=${ALLOWANCE_FRAME}/${channel}/fid/${fid}`}
-      >
-        Share
-      </Button.Link>,
+      <Button action={`/${channel}/share`}>Share & Earn</Button>,
       // <Button.Link href="https://degencast.xyz">Leaderboard</Button.Link>,
     ],
   });
